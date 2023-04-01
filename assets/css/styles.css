@@ -1,0 +1,54 @@
+#login {
+    background-image: url(../img/wallpaper.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+#home {
+    background-image: url(../img/wallpaper2.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
+    background-position: -50px;
+}
+
+#home1 {
+    background-color: white;
+    border-radius: 10px;
+}
+
+#logo1 span {
+    color: rgb(69, 178, 255);
+}
+
+#logo2 span {
+    color: rgb(98, 179, 255);
+}
+
+#banners1 {
+    margin-left: -60%;
+}
+
+#banners2 {
+    margin-right: -60%;
+}
+
+#banners1 img {
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+#banners2 img {
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+#grafico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#grafico canvas{
+    margin-top: 30px;
+}
