@@ -72,20 +72,28 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
+                                <th>Precio</th>
                                 <th>Existencia</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <?php
-                        while ($fila = mysqli_fetch_assoc($result)) {
+                        while ($row = mysqli_fetch_assoc($result)) {
                         ?>
                             <tbody>
                                 <tr>
-                                    <td><?php echo $fila['id_product'] ?></td>
-                                    <td><?php echo $fila['name_product'] ?></td>
-                                    <td><?php echo $fila['cant_product'] ?></td>
+                                    <td><?php echo $row['id_product'] ?></td>
+                                    <td><?php echo $row['name_product'] ?></td>
+                                    <td>$<?php echo $row['price_product'] ?></td>
+                                    <td><?php echo $row['cant_product'] ?></td>
                                     <td>
-                                        <a href="./edit_product.php?id=<?php echo $fila['id_product']; ?>" class="btn btn-sm btn-primary">Editar</a>
+                                        <a href="./edit_product.php?id=<?php echo $row['id_product']; ?>" class="btn btn-sm btn-primary">Editar</a>
+                                    </td>
+                                    <td>
+                                        <form method="POST" action="delete_product.php">
+                                            <input type="hidden" name="id_product" value="<?php echo $row['id_product']; ?>">
+                                            <button class="btn btn-sm btn-primary" type="submit">Eliminar</button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php

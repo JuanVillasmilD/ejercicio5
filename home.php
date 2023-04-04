@@ -51,7 +51,7 @@ session_start();
     <br>
     <div id="banner" class="container-fluid">
         <img src="./assets/img/banner.jpg" alt="">
-        <h1>Bienvenido <br> <?php echo $_SESSION['username']; ?></h1>
+        <h1>Bienvenid@ <br> <?php echo $_SESSION['username']; ?></h1>
     </div>
     <div class="container text-center">
         <div class="row">

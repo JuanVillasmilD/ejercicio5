@@ -11,9 +11,10 @@ if (isset($_GET['id'])) {
 if (isset($_POST['submit'])) {
     $new_name = $_POST['name'];
     $new_cant = $_POST['cant'];
+    $new_price = $_POST['price'];
     $id_product = $_POST['id'];
 
-    $update_query = "UPDATE products SET name_product = '$new_name', cant_product = '$new_cant' WHERE id_product = '$id_product'";
+    $update_query = "UPDATE products SET name_product = '$new_name', price_product = '$new_price', cant_product = '$new_cant' WHERE id_product = '$id_product'";
     $update_result = mysqli_query($conn, $update_query);
 
     if ($update_result) {
@@ -91,6 +92,11 @@ if (isset($_POST['submit'])) {
                                     <div>
                                         <label class="form-label" for="name">Nombre:</label>
                                         <input type="text" name="name" id="name" class="form-control" value="<?php echo $product['name_product'] ?>">
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <label class="form-label" for="price">Cantidad:</label>
+                                        <input type="number" name="price" id="price" class="form-control" value="<?php echo $product['price_product'] ?>">
                                     </div>
                                     <br>
                                     <div>

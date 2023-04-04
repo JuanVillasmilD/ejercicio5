@@ -2,22 +2,20 @@
 include_once('./connection.php');
 
 if (isset($_POST['submit'])) {
-    $user_name = $_POST['user_name'];
-    $user_surname = $_POST['user_surname'];
-    $username = $_POST['username'];
-    $user_email = $_POST['user_email'];
-    $user_password = $_POST['user_password'];
+    $name_product = $_POST['name_product'];
+    $price_product = $_POST['price_product'];
+    $cant_product = $_POST['cant_product'];
 
     // Verificar si ya existe un registro con el mismo nombre de producto
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
+    $result = mysqli_query($conn, "SELECT * FROM products WHERE name_product = '$name_product'");
     if (mysqli_num_rows($result) > 0) {
         // Si ya existe un registro con el mismo nombre, mostrar un mensaje de error
-        $error_message = "Ya existe ese nombre de usuario.";
+        $error_message = "Ya existe un producto con el mismo nombre";
     } else {
         // Si no existe un registro con el mismo nombre, insertar el nuevo registro en la base de datos
-        $insert_query = "INSERT INTO users (user_name, user_surname, username, user_email, user_password) VALUES ('$user_name', '$user_surname', '$username', '$user_email', '$user_password')";
+        $insert_query = "INSERT INTO products (name_product, price_product, cant_product) VALUES ('$name_product', '$price_product', '$cant_product')";
         mysqli_query($conn, $insert_query);
-        header("Location: ./users.php"); // Redirigir al usuario a la página de inventario
+        header("Location: ./products.php"); // Redirigir al usuario a la página de inventario
         exit();
     }
 }
@@ -48,7 +46,7 @@ if (isset($_POST['submit'])) {
                     <a class="nav-link active" aria-current="page" href="./home.php">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./users.php">Inventario</a>
+                    <a class="nav-link" href="./products.php">Inventario</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Sistema</a>
@@ -82,32 +80,26 @@ if (isset($_POST['submit'])) {
             <div class="container col-8">
                 <div id="home1">
                     <br>
-                    <h2>Agregar usuario</h1>
-                        <div id="formproduct">
-                            <?php if (isset($error_message)) { ?>
-                                <p><?php echo $error_message ?></p>
-                            <?php } ?>
-                            <br>
-                            <form method="post">
-                                <label for="user_name">Nombre:</label>
-                                <input type="text" class="form-control" id="user_name" name="user_name">
-                                <br>
-                                <label for="user_surname">Apellido:</label>
-                                <input type="text" class="form-control" id="user_surname" name="user_surname">
-                                <br>
-                                <label for="username">Nombre de usuario:</label>
-                                <input type="text" class="form-control" id="username" name="username">
-                                <br>
-                                <label for="user_password"> Contraseña:</label>
-                                <input type="text" class="form-control" id="user_password" name="user_password">
-                                <br>
-                                <label for="user_email">Correo eléctronico:</label>
-                                <input type="text" class="form-control" id="user_email" name="user_email">
-                                <br>
-                                <button class="btn btn-primary" type="submit" name="submit">Agregar</button>
-                            </form>
-                        </div>
+                    <h2>Agregar producto</h1>
+                    <div id="formproduct">
+                        <?php if (isset($error_message)) { ?>
+                            <p><?php echo $error_message ?></p>
+                        <?php } ?>
                         <br>
+                        <form method="post">
+                            <label for="name_product">Nombre de producto:</label>
+                            <input type="text" class="form-control" id="name_product" name="name_product">
+                            <br>
+                            <label for="price_product">Precio:</label>
+                            <input type="number" class="form-control" id="price_product" name="price_product">
+                            <br>
+                            <label for="cant_product">Cantidad:</label>
+                            <input type="number" class="form-control" id="cant_product" name="cant_product">
+                            <br>
+                            <button class="btn btn-primary" type="submit" name="submit">Agregar</button>
+                        </form>
+                    </div>
+                    <br>
                 </div>
             </div>
 

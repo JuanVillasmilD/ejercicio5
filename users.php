@@ -62,6 +62,11 @@ $result = mysqli_query($conn, "SELECT * FROM users");
 
             <div class="col-8">
                 <div id="home1">
+                    <br>
+                    <div class="d-grid col-6 mx-auto">
+                        <a class="btn btn-primary" href="./new_user.php" role="button">Agregar usuario</a>
+                    </div>
+                    <br>
                     <table class="table">
                         <thead>
                             <tr>
@@ -80,7 +85,7 @@ $result = mysqli_query($conn, "SELECT * FROM users");
                                     <td>
                                         <form method="POST" action="delete_user.php">
                                             <input type="hidden" name="user_id" value="<?php echo $row['id']; ?>">
-                                            <button type="submit">Eliminar</button>
+                                            <button class="btn btn-sm btn-primary" type="submit">Eliminar</button>
                                         </form>
                                     </td>
                                 </tr>
