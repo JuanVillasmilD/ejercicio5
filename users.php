@@ -34,8 +34,8 @@ $result = mysqli_query($conn, "SELECT * FROM users");
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Sistema</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Usuarios</a></li>
-                        <li><a class="dropdown-item" href="#">Reportes</a></li>
+                        <li><a class="dropdown-item" href="./users.php">Usuarios</a></li>
+                        <li><a class="dropdown-item" href="./report.php">Reportes</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

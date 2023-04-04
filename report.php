@@ -1,24 +1,6 @@
 <?php
 include_once('./connection.php');
 
-if (isset($_POST['submit'])) {
-    $name_product = $_POST['name_product'];
-    $price_product = $_POST['price_product'];
-    $cant_product = $_POST['cant_product'];
-
-    // Verificar si ya existe un registro con el mismo nombre de producto
-    $result = mysqli_query($conn, "SELECT * FROM products WHERE name_product = '$name_product'");
-    if (mysqli_num_rows($result) > 0) {
-        // Si ya existe un registro con el mismo nombre, mostrar un mensaje de error
-        $error_message = "Ya existe un producto con el mismo nombre";
-    } else {
-        // Si no existe un registro con el mismo nombre, insertar el nuevo registro en la base de datos
-        $insert_query = "INSERT INTO products (name_product, price_product, cant_product) VALUES ('$name_product', '$price_product', '$cant_product')";
-        mysqli_query($conn, $insert_query);
-        header("Location: ./products.php"); // Redirigir al usuario a la página de inventario
-        exit();
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -77,27 +59,11 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
 
-            <div class="container col-8">
+            <div class="col-8">
                 <div id="home1">
                     <br>
-                    <h2>Agregar producto</h1>
-                    <div id="formproduct">
-                        <?php if (isset($error_message)) { ?>
-                            <p><?php echo $error_message ?></p>
-                        <?php } ?>
-                        <br>
-                        <form method="post">
-                            <label for="name_product">Nombre de producto:</label>
-                            <input type="text" class="form-control" id="name_product" name="name_product">
-                            <br>
-                            <label for="price_product">Precio:</label>
-                            <input type="number" class="form-control" id="price_product" name="price_product">
-                            <br>
-                            <label for="cant_product">Cantidad:</label>
-                            <input type="number" class="form-control" id="cant_product" name="cant_product">
-                            <br>
-                            <button class="btn btn-primary" type="submit" name="submit">Agregar</button>
-                        </form>
+                    <div class="d-grid col-6 mx-auto">
+                        <a class="btn btn-primary" href="./reportproducts.php" role="button">Reporte de productos</a>
                     </div>
                     <br>
                 </div>
@@ -114,6 +80,7 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
