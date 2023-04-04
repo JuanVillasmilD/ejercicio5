@@ -1,7 +1,28 @@
 <?php
 include_once('./connection.php');
-$result = mysqli_query($conn, "SELECT * FROM products");
+if (isset($_GET['id'])) {
+    $id_product = $_GET['id'];
+    $result = mysqli_query($conn, "SELECT * FROM products WHERE id_product = '$id_product'");
+    if ($result) {
+        $product = mysqli_fetch_assoc($result);
+    }
+}
 
+if (isset($_POST['submit'])) {
+    $new_name = $_POST['name'];
+    $new_cant = $_POST['cant'];
+    $id_product = $_POST['id'];
+
+    $update_query = "UPDATE products SET name_product = '$new_name', cant_product = '$new_cant' WHERE id_product = '$id_product'";
+    $update_result = mysqli_query($conn, $update_query);
+
+    if ($update_result) {
+        header("Location: ./products.php");
+        exit;
+    } else {
+        echo "Error updating product: " . mysqli_error($conn);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,39 +81,31 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                 </div>
             </div>
 
-            <div class="col-8">
+            <div class="container col-8">
                 <div id="home1">
                     <br>
-                    <div class="d-grid col-6 mx-auto">
-                        <a class="btn btn-primary" href="./add_product.php" role="button">Agregar producto</a>
-                    </div>
-                    <br>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Existencia</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <?php
-                        while ($fila = mysqli_fetch_assoc($result)) {
-                        ?>
-                            <tbody>
-                                <tr>
-                                    <td><?php echo $fila['id_product'] ?></td>
-                                    <td><?php echo $fila['name_product'] ?></td>
-                                    <td><?php echo $fila['cant_product'] ?></td>
-                                    <td>
-                                        <a href="./edit_product.php?id=<?php echo $fila['id_product']; ?>" class="btn btn-sm btn-primary">Editar</a>
-                                    </td>
-                                </tr>
-                            <?php
-                        }
-                            ?>
-                            </tbody>
-                    </table>
+                    <h2>Editar Producto</h1>
+                        <div id="formproduct">
+                            <?php if (isset($product)) : ?>
+                                <form method="POST">
+                                    <div>
+                                        <label class="form-label" for="name">Nombre:</label>
+                                        <input type="text" name="name" id="name" class="form-control" value="<?php echo $product['name_product'] ?>">
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <label class="form-label" for="cant">Cantidad:</label>
+                                        <input type="number" name="cant" id="cant" class="form-control" value="<?php echo $product['cant_product'] ?>">
+                                    </div>
+                                    <br>
+                                    <input type="hidden" name="id" value="<?php echo $product['id_product'] ?>">
+                                    <button class="btn btn-primary" type="submit" name="submit">Actualizar</button>
+                                </form>
+                            <?php else : ?>
+                                <p>Producto no encontrado</p>
+                            <?php endif; ?>
+                        </div>
+                        <br>
                 </div>
             </div>
 
@@ -107,7 +120,6 @@ $result = mysqli_query($conn, "SELECT * FROM products");
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

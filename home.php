@@ -49,6 +49,10 @@ session_start();
         </div>
     </nav>
     <br>
+    <div id="banner" class="container-fluid">
+        <img src="./assets/img/banner.jpg" alt="">
+        <h1>Bienvenido <br> <?php echo $_SESSION['username']; ?></h1>
+    </div>
     <div class="container text-center">
         <div class="row">
             <div class="col-2">
@@ -75,6 +79,49 @@ session_start();
                                     labels: xValues,
                                     datasets: [{
                                         label: 'Productos para el baño',
+                                        data: [6214, 5127, 4253, 3214, 3274, 4538, 3471, 2210, 3412, 2478],
+                                        borderColor: "rgb(67, 255, 227)",
+                                        fill: false
+                                    }, {
+                                        label: 'Productos para la cocina',
+                                        data: [5121, 3244, 3211, 1903, 2012, 2457, 2147, 3247, 4698, 3754],
+                                        borderColor: "rgb(98, 255, 156)",
+                                        fill: false
+                                    }, {
+                                        label: 'Productos para el exterior ',
+                                        data: [5883, 4125, 3424, 3247, 4521, 4000, 2000, 2143, 2002, 3214],
+                                        borderColor: "rgb(98, 179, 255)",
+                                        fill: false
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    plugins: {
+                                        legend: {
+                                            position: 'top',
+                                        },
+                                        title: {
+                                            display: true,
+                                            text: 'Unidades vendidas',
+                                            fontSize: 100
+                                        }
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                    <br>
+                    <div id="grafico" class="container-fluid">
+                        <canvas id="myChart2" style="width:100%;max-width:700px"></canvas>
+                        <script>
+                            const zValues = ['2021 Q1', '2021 Q2', '2021 Q3', '2021 Q4', '2022 Q1', '2022 Q2', '2022 Q3', '2022 Q4', '2023 Q1'];
+
+                            new Chart("myChart2", {
+                                type: "line",
+                                data: {
+                                    labels: zValues,
+                                    datasets: [{
+                                        label: 'Productos para el baño',
                                         data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
                                         borderColor: "rgb(67, 255, 227)",
                                         fill: false
@@ -98,7 +145,7 @@ session_start();
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Unidades vendidas'
+                                            text: 'Unidades fabricadas'
                                         }
                                     }
                                 }
@@ -106,12 +153,18 @@ session_start();
                         </script>
                     </div>
                     <br><br>
+                    <h2>Trailer de nuestro último producto!</h2>
                     <div class="embed-responsive embed-responsive-16by9">
                         <video class="embed-responsive-item" controls>
                             <source src="./assets/img/mas.mp4" type="video/mp4">
                             Tu navegador no soporta el elemento video.
                         </video>
                     </div>
+                    <br>
+                    <div id="masimg">
+                        <img src="./assets/img/masbanner.png" alt="">
+                    </div>
+                    <br><br>
                 </div>
             </div>
 
